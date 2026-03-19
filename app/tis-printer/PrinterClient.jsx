@@ -1,0 +1,8 @@
+'use client';
+import { useEffect, useRef } from 'react';
+const _CSS = `*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',system-ui,sans-serif;background:#eef2f7}#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#1e3a8a,#1d4ed8)}.login-box{background:#fff;border-radius:20px;padding:2.5rem;width:100%;max-width:400px}.login-logo{text-align:center;font-size:40px;margin-bottom:1rem}input,button{width:100%;padding:.7rem;margin-bottom:1rem;border:1px solid #e2e8f0;border-radius:8px}button{background:#1d4ed8;color:#fff;border:none;cursor:pointer}button:hover{background:#1e40af}#mainApp{display:none;padding:2rem}`;
+const _HTML = `<!DOCTYPE html><html><head><style>${_CSS}</style></head><body><div id="loginScreen"><div class="login-box"><div class="login-logo">🖨️</div><h2 style="text-align:center">TIS Service v2.0</h2><input type="password" id="apiKey" placeholder="sk-ant-..."><button onclick="handleLogin()">เข้าสู่ระบบ</button></div></div><div id="mainApp"><h1>🖨️ TIS Service v2.0</h1><input type="file" id="fileInput"><button onclick="alert('✅ Ready!')">🚀 Process</button></div><script>function handleLogin(){const k=document.getElementById('apiKey').value;if(k){localStorage.setItem('api',k);document.getElementById('loginScreen').style.display='none';document.getElementById('mainApp').style.display='block'}}if(localStorage.getItem('api')){document.getElementById('apiKey').value=localStorage.getItem('api');handleLogin()}</script></body></html>`;
+export default function PrinterClient() {
+  const rootRef = useRef(null);
+  return <div ref={rootRef} dangerouslySetInnerHTML={{__html: _HTML}} />;
+}
